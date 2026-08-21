@@ -8,7 +8,7 @@ This add-on exports selected note types as structured Markdown for inspection by
 
 ## Installation
 
-Install **Export Note Types as Text** from [AnkiWeb](https://ankiweb.net/shared/) using add-on code `xxx`.
+Install **Export Note Types as Text** from [AnkiWeb](https://ankiweb.net/shared/info/1033830704) using add-on code `1033830704`.
 
 ## Usage
 
@@ -16,12 +16,12 @@ Install **Export Note Types as Text** from [AnkiWeb](https://ankiweb.net/shared/
 
 Choose either of the following menu items:
 
+<img src="export-note-types-as-text-2.png" alt="Export Note Types selection dialog" align="right" width="232">
+
 * **Export → Copy Note Types as Text…**
 * **Export → Save Note Types as Text…**
 
 Both commands open the same selection dialog. Select the note types to export, then choose **OK**.
-
-<img src="export-note-types-as-text-2.png" alt="Export Note Types selection dialog" align="right" width="232">
 
 **Copy Note Types as Text…** places the resulting Markdown on the clipboard. **Save Note Types as Text…** writes it to a UTF-8 Markdown file, by default named `anki-note-types-YYYY-MM-DD.md`.
 
@@ -31,7 +31,7 @@ The add-on only reads note-type definitions; it does not modify the collection.
 
 The initial note-type selection and keyboard shortcuts can be changed in the add-on’s configuration dialog:
 
-**Tools → Add-ons → Export Note Types as Text → Config**
+**Tools → Add-ons → 𝕾 Export Note Types as Text → Config**
 
 The default configuration is:
 
@@ -72,7 +72,7 @@ On macOS, Qt interprets `Meta` as Control (`⌃`), `Ctrl` as Command (`⌘`), `A
 
 No restart is required.
 
-<br><img src="export-note-types-as-text-3.png" alt="Export Note Types selection dialog" width="600">
+<img src="export-note-types-as-text-3.png" alt="Export Note Types selection dialog" width="600">
 
 ## Format
 
