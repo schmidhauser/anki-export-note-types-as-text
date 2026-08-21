@@ -33,7 +33,9 @@ The initial note-type selection and keyboard shortcuts can be changed in the add
 
 **Tools → Add-ons → 𝕾 Export Note Types as Text → Config**
 
-By default, all note types are selected. **Copy Note Types as Text…** has no assigned shortcut, whereas **Save Note Types as Text…** uses `Meta+Ctrl+Shift+N` (`⌃⇧⌘N`). One can also specify note types that should be unchecked when the **Export Note Types** dialog opens; they can still be selected manually for any individual export.
+By default, all note types are selected. Note types can also be specified to start unchecked when the **Export Note Types** dialog opens; they can still be selected manually for any individual export.
+
+**Copy Note Types as Text…** has no assigned shortcut, whereas **Save Note Types as Text…** uses `Meta+Ctrl+Shift+N` (`⌃⇧⌘N`).
 
 ## Format
 
