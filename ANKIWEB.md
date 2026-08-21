@@ -1,18 +1,12 @@
-# Export Note Types as Text
-
 Anki note types define much of the structure and behavior of a collection — which fields a note contains, which field is used for sorting, which card types are defined, under what conditions cards are generated, and how those cards are rendered. In larger or more specialized collections, these definitions often encode conventions that are difficult to reconstruct from individual notes alone.
 
 This add-on exports selected note types as structured Markdown for inspection by the user or an LLM. The export is intended to capture the aspects of the selected note-type and card-type definitions that matter most for understanding their structure and behavior, without attempting to serialize the whole collection or reproduce every rendering detail.
 
-**Export Note Types as Text** is designed to complement **[Export Deck Tree as Text](https://github.com/schmidhauser/anki-export-deck-tree-as-text)**, **[Export Field and Tag Legend as Text](https://github.com/schmidhauser/anki-export-field-tag-legend-as-text)**, **[Export Tags as Text](https://github.com/schmidhauser/anki-export-tags-as-text)**, and, in the Browser, **[Export Selected Notes to Structured Text](https://github.com/schmidhauser/anki-export-selected-notes-to-structured-text)**. Used together, these add-ons provide an LLM with the collection’s deck structure, note-type structure, field and tag conventions, tag inventory, and selected notes for assessment or as concrete exemplars.
+**Export Note Types as Text** is designed to complement **[Export Deck Tree as Text](https://github.com/schmidhauser/anki-export-deck-tree-as-text)**, **[Export Field and Tag Legend as Text](https://ankiweb.net/shared/info/1931887561)**, **[Export Tags as Text](https://ankiweb.net/shared/info/550673409)**, and, in the Browser, **[Export Selected Notes to Structured Text](https://ankiweb.net/shared/info/1694585841)**. Used together, these add-ons provide an LLM with the collection’s deck structure, note-type structure, field and tag conventions, tag inventory, and selected notes for assessment or as concrete exemplars.
 
-## Installation
-
-Install **Export Note Types as Text** from [AnkiWeb](https://ankiweb.net/shared/) using add-on code `xxx`.
+<img src="https://raw.githubusercontent.com/schmidhauser/anki-export-note-types-as-text/refs/heads/main/export-note-types-as-text-1.png" alt="Export menu with Note Types commands" align="right" width="232">
 
 ## Usage
-
-<img src="export-note-types-as-text-1.png" alt="Export menu with Note Types commands" align="right" width="232">
 
 Choose either of the following menu items:
 
@@ -21,7 +15,7 @@ Choose either of the following menu items:
 
 Both commands open the same selection dialog. Select the note types to export, then choose **OK**.
 
-<img src="export-note-types-as-text-2.png" alt="Export Note Types selection dialog" align="right" width="232">
+<img src="https://raw.githubusercontent.com/schmidhauser/anki-export-note-types-as-text/refs/heads/main/export-note-types-as-text-2.png" alt="Export Note Types selection dialog" align="right" width="232">
 
 **Copy Note Types as Text…** places the resulting Markdown on the clipboard. **Save Note Types as Text…** writes it to a UTF-8 Markdown file, by default named `anki-note-types-YYYY-MM-DD.md`.
 
@@ -29,19 +23,13 @@ The add-on only reads note-type definitions; it does not modify the collection.
 
 ## Configuration
 
-The initial note-type selection and keyboard shortcuts can be changed in the add-on’s configuration dialog:
+The initial note-type selection and keyboard shortcuts can be changed under **Tools → Add-ons → Export Note Types as Text → Config**. The default configuration is:
 
-**Tools → Add-ons → Export Note Types as Text → Config**
-
-The default configuration is:
-
-```json
-{
-    "default_unselected_note_types": [],
-    "shortcut_copy": "",
-    "shortcut_save": "Meta+Ctrl+Shift+N"
-}
-```
+    {
+        "default_unselected_note_types": [],
+        "shortcut_copy": "",
+        "shortcut_save": "Meta+Ctrl+Shift+N"
+    }
 
 ### Note-Type Selection Defaults
 
@@ -49,30 +37,22 @@ The default configuration is:
 
 Each entry must be the exact name of a note type. Unselected note types remain available and can be selected for an individual export. An example:
 
-```json
-"default_unselected_note_types": [
-  "Basic",
-  "Cloze"
-]
-```
+    "default_unselected_note_types": [
+      "Basic",
+      "Cloze"
+    ]
 
 initially unselects the note types **Basic** and **Cloze**.
 
-Set it to the empty list (`[]`) to select all note types by default.
-
-Configured names that are not present in the current collection are ignored.
+Set it to the empty list (`[]`) to select all note types by default. Configured names that are not present in the current collection are ignored.
 
 ### Keyboard Shortcuts
 
-`shortcut_copy` specifies the keyboard shortcut for **Copy Note Types as Text…** It is disabled by default.
+`shortcut_copy` specifies the keyboard shortcut for **Copy Note Types as Text…** It is disabled by default. `shortcut_save` specifies the keyboard shortcut for **Save Note Types as Text…** The default is `Meta+Ctrl+Shift+N` (`⌃⇧⌘N`); set it to `""` to disable the shortcut. No restart is required.
 
-`shortcut_save` specifies the keyboard shortcut for **Save Note Types as Text…** The default is `Meta+Ctrl+Shift+N` (`⌃⇧⌘N`); set it to `""` to disable the shortcut.
-
-On macOS, Qt interprets `Meta` as Control (`⌃`), `Ctrl` as Command (`⌘`), `Alt` as Option (`⌥`), and `Shift` as Shift (`⇧`).
-
-No restart is required.
-
-<br><img src="export-note-types-as-text-3.png" alt="Export Note Types selection dialog" width="600">
+<p>
+    <img src="https://raw.githubusercontent.com/schmidhauser/anki-export-note-types-as-text/refs/heads/main/export-note-types-as-text-3.png" alt="Configuration dialog for Export Note Types as Text" width="800">
+</p>
 
 ## Format
 
@@ -89,45 +69,43 @@ It begins with a summary giving the number and names of the exported note types.
 
 An example:
 
-````markdown
-# ANKI NOTE TYPES
+    # ANKI NOTE TYPES
 
-Exported note types (1): `Basic`.
+    Exported note types (1): `Basic`.
 
-## Basic
+    ## Basic
 
-- kind: standard
-- sort field: `Front`
+    - kind: standard
+    - sort field: `Front`
 
-### Fields
+    ### Fields
 
-1. `Front`
-2. `Back`
+    1. `Front`
+    2. `Back`
 
-### Card-generation requirements
+    ### Card-generation requirements
 
-- Card 1 (`Card 1`) requires any non-empty field among: `Front`
+    - Card 1 (`Card 1`) requires any non-empty field among: `Front`
 
-### Card types
+    ### Card types
 
-#### Card 1: Card 1
+    #### Card 1: Card 1
 
-Front template:
+    Front template:
 
-```html
-{{Front}}
-```
+    ```html
+    {{Front}}
+    ```
 
-Back template:
+    Back template:
 
-```html
-{{FrontSide}}
+    ```html
+    {{FrontSide}}
 
-<hr id=answer>
+    <hr id=answer>
 
-{{Back}}
-```
-````
+    {{Back}}
+    ```
 
 Note types are sorted case-insensitively by name. Field and card-type order is preserved.
 
@@ -139,14 +117,4 @@ The note type’s Styling, Browser Appearance, deck overrides, LaTeX configurati
 
 Tested with Anki 26.08 on macOS Tahoe 26. Windows and Linux have not yet been tested.
 
-## Version
-
-Version 1.0.
-
-## Feedback
-
 Suggestions and bug reports are welcome. Please [open an issue on GitHub](https://github.com/schmidhauser/anki-export-note-types-as-text/issues).
-
-## License
-
-Licensed under the [GNU AGPL v3 or later](LICENSE).
