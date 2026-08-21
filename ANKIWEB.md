@@ -4,18 +4,18 @@ This add-on exports selected note types as structured Markdown for inspection by
 
 **Export Note Types as Text** is designed to complement **[Export Deck Tree as Text](https://github.com/schmidhauser/anki-export-deck-tree-as-text)**, **[Export Field and Tag Legend as Text](https://ankiweb.net/shared/info/1931887561)**, **[Export Tags as Text](https://ankiweb.net/shared/info/550673409)**, and, in the Browser, **[Export Selected Notes to Structured Text](https://ankiweb.net/shared/info/1694585841)**. Used together, these add-ons provide an LLM with the collection’s deck structure, note-type structure, field and tag conventions, tag inventory, and selected notes for assessment or as concrete exemplars.
 
-<img src="https://raw.githubusercontent.com/schmidhauser/anki-export-note-types-as-text/refs/heads/main/export-note-types-as-text-1.png" alt="Export menu with Note Types commands" align="right" width="232">
-
 ## Usage
+
+<img src="https://raw.githubusercontent.com/schmidhauser/anki-export-note-types-as-text/refs/heads/main/export-note-types-as-text-1.png" alt="Export menu with Note Types commands" align="right" width="300">
 
 Choose either of the following menu items:
 
 * **Export → Copy Note Types as Text…**
 * **Export → Save Note Types as Text…**
 
-Both commands open the same selection dialog. Select the note types to export, then choose **OK**.
+<img src="https://raw.githubusercontent.com/schmidhauser/anki-export-note-types-as-text/refs/heads/main/export-note-types-as-text-2.png" alt="Export Note Types selection dialog" align="right" width="300">
 
-<img src="https://raw.githubusercontent.com/schmidhauser/anki-export-note-types-as-text/refs/heads/main/export-note-types-as-text-2.png" alt="Export Note Types selection dialog" align="right" width="232">
+Both commands open the same selection dialog. Select the note types to export, then choose **OK**.
 
 **Copy Note Types as Text…** places the resulting Markdown on the clipboard. **Save Note Types as Text…** writes it to a UTF-8 Markdown file, by default named `anki-note-types-YYYY-MM-DD.md`.
 
@@ -23,36 +23,13 @@ The add-on only reads note-type definitions; it does not modify the collection.
 
 ## Configuration
 
-The initial note-type selection and keyboard shortcuts can be changed under **Tools → Add-ons → Export Note Types as Text → Config**. The default configuration is:
+The initial note-type selection and keyboard shortcuts can be changed in the add-on’s configuration dialog:
 
-    {
-        "default_unselected_note_types": [],
-        "shortcut_copy": "",
-        "shortcut_save": "Meta+Ctrl+Shift+N"
-    }
+**Tools → Add-ons → 𝕾 Export Note Types as Text → Config**
 
-### Note-Type Selection Defaults
+By default, all note types are selected. Note types can also be specified to start unchecked when the **Export Note Types** dialog opens; they can still be selected manually for any individual export.
 
-`default_unselected_note_types` specifies the note types that are initially unselected in the **Export Note Types** dialog.
-
-Each entry must be the exact name of a note type. Unselected note types remain available and can be selected for an individual export. An example:
-
-    "default_unselected_note_types": [
-      "Basic",
-      "Cloze"
-    ]
-
-initially unselects the note types **Basic** and **Cloze**.
-
-Set it to the empty list (`[]`) to select all note types by default. Configured names that are not present in the current collection are ignored.
-
-### Keyboard Shortcuts
-
-`shortcut_copy` specifies the keyboard shortcut for **Copy Note Types as Text…** It is disabled by default. `shortcut_save` specifies the keyboard shortcut for **Save Note Types as Text…** The default is `Meta+Ctrl+Shift+N` (`⌃⇧⌘N`); set it to `""` to disable the shortcut. No restart is required.
-
-<p>
-    <img src="https://raw.githubusercontent.com/schmidhauser/anki-export-note-types-as-text/refs/heads/main/export-note-types-as-text-3.png" alt="Configuration dialog for Export Note Types as Text" width="800">
-</p>
+**Copy Note Types as Text…** has no assigned shortcut, whereas **Save Note Types as Text…** uses `Meta+Ctrl+Shift+N` (`⌃⇧⌘N`).
 
 ## Format
 
