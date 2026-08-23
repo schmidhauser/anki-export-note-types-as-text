@@ -29,6 +29,7 @@ HTML_COMMENT_RE = re.compile(r"<!--.*?-->", re.DOTALL)
 
 
 EXPORT_MENU_OBJECT_NAME = "schmidhauser_export_menu"
+EXPORT_GROUP_PROPERTY = "schmidhauser_export_group"
 
 
 def get_export_menu() -> QMenu:
@@ -38,11 +39,48 @@ def get_export_menu() -> QMenu:
     if existing_menu is not None:
         return existing_menu
 
-    export_menu = QMenu("Export", mw)
+    export_menu = QMenu("Export", menu_bar)
     export_menu.setObjectName(EXPORT_MENU_OBJECT_NAME)
     menu_bar.insertMenu(mw.form.menuHelp.menuAction(), export_menu)
 
     return export_menu
+
+
+def add_export_action_group(
+    group_name: str,
+    copy_action: QAction,
+    save_action: QAction,
+) -> None:
+    export_menu = get_export_menu()
+
+    copy_action.setProperty(EXPORT_GROUP_PROPERTY, group_name)
+    save_action.setProperty(EXPORT_GROUP_PROPERTY, group_name)
+
+    sort_key = group_name.casefold()
+
+    before_action = next(
+        (
+            action
+            for action in export_menu.actions()
+            if isinstance(
+                existing_group := action.property(EXPORT_GROUP_PROPERTY),
+                str,
+            )
+            and existing_group.casefold() > sort_key
+        ),
+        None,
+    )
+
+    if before_action is None:
+        if export_menu.actions():
+            export_menu.addSeparator()
+
+        export_menu.addAction(copy_action)
+        export_menu.addAction(save_action)
+    else:
+        export_menu.insertAction(before_action, copy_action)
+        export_menu.insertAction(before_action, save_action)
+        export_menu.insertSeparator(before_action)
 
 
 class NoteTypeSelectionDialog(QDialog):
@@ -469,7 +507,7 @@ def on_save() -> None:
     text, total = prepared
 
     default_filename = (
-        f"anki-note-types-{date.today().isoformat()}.md"
+        f"anki-note-types-{date.today().isoformat()}.txt"
     )
     default_path = Path.home() / default_filename
 
@@ -477,7 +515,7 @@ def on_save() -> None:
         mw,
         "Save Note Types as Text",
         str(default_path),
-        "Markdown Files (*.md)",
+        "Text Files (*.txt)",
     )
 
     if not filename:
@@ -486,7 +524,7 @@ def on_save() -> None:
     path = Path(filename)
 
     if not path.suffix:
-        path = path.with_suffix(".md")
+        path = path.with_suffix(".txt")
 
     try:
         path.write_bytes(text.encode("utf-8"))
@@ -526,10 +564,8 @@ apply_shortcuts(config)
 
 mw.addonManager.setConfigUpdatedAction(__name__, apply_shortcuts)
 
-export_menu = get_export_menu()
-
-if export_menu.actions():
-    export_menu.addSeparator()
-
-export_menu.addAction(copy_action)
-export_menu.addAction(save_action)
+add_export_action_group(
+    "Note Types",
+    copy_action,
+    save_action,
+)

@@ -2,7 +2,7 @@ Anki note types define much of the structure and behavior of a collection — wh
 
 This add-on exports selected note types as structured Markdown for inspection by the user or an LLM. The export is intended to capture the aspects of the selected note-type and card-type definitions that matter most for understanding their structure and behavior, without attempting to serialize the whole collection or reproduce every rendering detail.
 
-**Export Note Types as Text** is designed to complement **[Export Deck Tree as Text](https://github.com/schmidhauser/anki-export-deck-tree-as-text)**, **[Export Field and Tag Legend as Text](https://ankiweb.net/shared/info/1931887561)**, **[Export Tags as Text](https://ankiweb.net/shared/info/550673409)**, and, in the Browser, **[Export Selected Notes to Structured Text](https://ankiweb.net/shared/info/1694585841)**. Used together, these add-ons provide an LLM with the collection’s deck structure, note-type structure, field and tag conventions, tag inventory, and selected notes for assessment or as concrete exemplars.
+**[Export Note Types as Text](https://ankiweb.net/shared/info/1033830704)** complements **[Export Deck Tree as Text](https://ankiweb.net/shared/info/1358364553)**, **[Export Field and Tag Legend as Text](https://ankiweb.net/shared/info/1931887561)**, and **[Export Tags as Text](https://ankiweb.net/shared/info/550673409)**. Together, these four add-ons provide collection-level context. In the Browser, **[Selected Notes to Structured Text](https://ankiweb.net/shared/info/1694585841)** supplies the selected notes to which that context can be applied, whether for assessment or as exemplars for note generation.
 
 ## Usage
 
@@ -17,7 +17,7 @@ Choose either of the following menu items:
 
 Both commands open the same selection dialog. Select the note types to export, then choose **OK**.
 
-**Copy Note Types as Text…** places the resulting Markdown on the clipboard. **Save Note Types as Text…** writes it to a UTF-8 Markdown file, by default named `anki-note-types-YYYY-MM-DD.md`.
+**Copy Note Types as Text…** places the resulting Markdown on the clipboard. **Save Note Types as Text…** writes it to a UTF-8 text file, by default named `anki-note-types-YYYY-MM-DD.txt`.
 
 The add-on only reads note-type definitions; it does not modify the collection.
 
@@ -88,7 +88,7 @@ Note types are sorted case-insensitively by name. Field and card-type order is p
 
 HTML comments are removed from front and back templates before export; otherwise the template text is preserved. This prevents large hidden comments, such as embedded collection documentation, from being included in the note-type export.
 
-The note type’s Styling, Browser Appearance, deck overrides, LaTeX configuration, internal IDs, and similar metadata are intentionally omitted because they are usually less relevant to assessing or creating notes and would substantially increase the size of the export. External resources referenced by templates, such as CSS or JavaScript files, are likewise not embedded. These choices may be revisited in future versions if there is a clear use case for exporting additional note-type metadata.
+Styling, Browser Appearance, deck overrides, LaTeX configuration, internal IDs, and similar note-type metadata are intentionally omitted because they are usually less relevant to assessing or creating notes and would substantially increase the size of the export. External resources referenced by templates, such as CSS or JavaScript files, are likewise not embedded.
 
 ## Compatibility
 
